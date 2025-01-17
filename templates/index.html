@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - D&D Campaign Manager{% endblock %}
+
+{% block content %}
+    {% if logged_in() %}
+        <p>Welcome back, DM! <a href="{{ url_for('dashboard') }}">Go to Dashboard</a></p>
+    {% endif %}
+{% endblock %}

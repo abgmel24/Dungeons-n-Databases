@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+View Encounters
+{% endblock %}
+
+{% block content %}
+<h2>Encounters for Campaign: {{ campaign_name }}</h2>
+<a href="{{ url_for('add_encounter', campaign_id=campaign_id, campaign_name=campaign_name) }}" class="button">Add Encounter</a>
+{% if encounters %}
+    <table class="tb">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Exp Gained</th>
+                <th>Loot</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for encounter in encounters %}
+                <tr>
+                    <td>{{ encounter[2] }}</td> <!--Location-->
+                    <td>{{ encounter[3] }}</td> <!--Data-->
+                    <td>{{ encounter[4] }}</td> <!--Exp Gained-->
+                    <td>{{ encounter[5] or 'N/A' }}</td> <!--Loot-->
+                    <td>{{ encounter[6] }}</td> <!--Rating-->
+                    <td>
+                        <a href="{{ url_for('update_encounter', campaign_id=campaign_id, campaign_name=campaign_name, encounter_id=encounter[0]) }}">Update</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No encounters found for this campaign.</p>
+{% endif %}
+{% endblock %}

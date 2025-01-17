@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>View Monsters</h1>
+    <form method="POST">
+        <label for="monster_type">Filter by Type:</label>
+        <select name="monster_type" id="monster_type">
+            <option value="" {% if not selected_monster_type %}selected{% endif %}>All</option>
+            <option value="Aberration" {% if selected_monster_type == 'Aberration' %}selected{% endif %}>Aberration</option>
+            <option value="Beast" {% if selected_monster_type == 'Beast' %}selected{% endif %}>Beast</option>
+            <option value="Celestial" {% if selected_monster_type == 'Celestial' %}selected{% endif %}>Celestial</option>
+            <option value="Construct" {% if selected_monster_type == 'Construct' %}selected{% endif %}>Construct</option>
+            <option value="Dragon" {% if selected_monster_type == 'Dragon' %}selected{% endif %}>Dragon</option>
+            <option value="Elemental" {% if selected_monster_type == 'Elemental' %}selected{% endif %}>Elemental</option>
+            <option value="Fey" {% if selected_monster_type == 'Fey' %}selected{% endif %}>Fey</option>
+            <option value="Fiend" {% if selected_monster_type == 'Fiend' %}selected{% endif %}>Fiend</option>
+            <option value="Giant" {% if selected_monster_type == 'Giant' %}selected{% endif %}>Giant</option>
+            <option value="Humanoid" {% if selected_monster_type == 'Humanoid' %}selected{% endif %}>Humanoid</option>
+            <option value="Monstrosity" {% if selected_monster_type == 'Monstrosity' %}selected{% endif %}>Monstrosity</option>
+            <option value="Ooze" {% if selected_monster_type == 'Ooze' %}selected{% endif %}>Ooze</option>
+            <option value="Plant" {% if selected_monster_type == 'Plant' %}selected{% endif %}>Plant</option>
+            <option value="Swarm of tiny beasts" {% if selected_monster_type == 'Swarm of tiny beasts' %}selected{% endif %}>Swarm of tiny beasts</option>
+            <option value="Undead" {% if selected_monster_type == 'Undead' %}selected{% endif %}>Undead</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>    
+
+    <h2>All Monsters</h2>
+    <table class="tb">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Experience</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for monster in monsters %}
+                <tr>
+                    <td>{{ monster[1] }}</td>
+                    <td>{{ monster[2] }}</td>
+                    <td>{{ monster[3] }}</td>
+                    <td>{{ monster[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

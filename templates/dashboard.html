@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Your Dashboard</h1>
+    
+    <p>Select a campaign to manage from the list below or view items and monsters.</p>
+
+    <div class="header-links">
+        <a href="{{ url_for('view_items') }}">View Items</a> | 
+        <a href="{{ url_for('add_item') }}" class="button">Add New Item</a> |
+        <a href="{{ url_for('view_monsters') }}">View Monsters</a> |
+        <a href="{{ url_for('add_monster') }}">Add New Monster</a> 
+    </div>
+    <br>
+    <a href="{{ url_for('add_campaign') }}" class="button">Create a New Campaign</a>
+    <br>
+    <a href="{{ url_for('export_campaigns') }}" class="button">Download Your Campaigns</a>
+    <br>
+    {% if campaigns %}
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th>Campaign Name</th>
+                    <th>Last Meeting</th>
+                    <th>Meeting Day</th>
+                    <th>Meeting Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for campaign in campaigns %}
+                    <tr>
+                        <td>{{ campaign[2] }}</td>  <!--'name' -->
+                        <td>{{ campaign[3] or 'Not yet scheduled' }}</td>  <!--'last_meeting' -->
+                        <td>{{ campaign[4] }}</td>  <!--'meeting_day' -->
+                        <td>{{ campaign[5] }}</td>  <!--'meeting_time' -->
+                        <td>{{ 'Active' if campaign[6] else 'Inactive' }}</td>  <!--'is_active' -->
+                        <td>
+                            <a href="{{ url_for('view_players', campaign_id=campaign[0], campaign_name=campaign[2]) }}">Manage Players</a><br>
+                            <br>
+                            <a href="{{ url_for('view_encounters', campaign_id=campaign[0], campaign_name=campaign[2]) }}">Manage Encounters</a><br>
+                            <br>
+                            <a href="{{ url_for('view_npcs', campaign_id=campaign[0], campaign_name=campaign[2]) }}">Manage NPCs</a><br>
+                        </td>                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No campaigns found.</p>
+    {% endif %}
+{% endblock %}

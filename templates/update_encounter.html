@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Encounter - D&D Campaign Manager{% endblock %}
+
+{% block content %}
+    <h2>Update Encounter Details</h2>
+    
+    <!-- Display encounter details -->
+    <form action="{{ url_for('update_encounter', campaign_id=campaign_id, campaign_name=campaign_name, encounter_id=encounter[0]) }}" method="POST">
+        <label for="Location Name">Location Name:</label>
+        <input type="text" name="Location Name" value="{{ encounter[2] }}"><br>
+
+        <label for="Encounter Date">Encounter Date:</label>
+        <input type="date" name="Encounter Date" value="{{ encounter[3] }}"><br>
+
+        <label for="EXP Gained">EXP Gained:</label>
+        <input type="number" name="EXP Gained" value="{{ encounter[4] }}"><br>
+
+        <label for="Loot Gained">Loot Gained:</label>
+        <input type="text" name="Loot Gained" value="{{ encounter[5] }}"><br>
+
+        <!-- Display calculated encounter rating -->
+        <label for="Encounter Rating">Encounter Rating:</label>
+        <input type="number" name="Encounter Rating" value="{{ encounter[6] }}" readonly><br>
+
+        <input type="submit" value="Update Encounter">
+    </form>
+
+    <hr>
+
+    <!-- Display assigned monsters -->
+    <h3>Assigned Monsters</h3>
+    <table class="tb">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>EXP</th>
+            <th>Rating</th>
+            <th>Action</th>
+        </tr>
+        {% for monster in encounter_monsters %}
+        <tr>
+            <td>{{ monster[1] }}</td>
+            <td>{{ monster[2] }}</td>
+            <td>{{ monster[3] }}</td>
+            <td>{{ monster[4] }}</td>
+            <td>
+                <form action="{{ url_for('update_encounter', campaign_id=campaign_id, campaign_name=campaign_name, encounter_id=encounter[0]) }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="remove_monster_id" value="{{ monster[0] }}">
+                    <button type="submit" name="remove_monster" value="remove">Remove</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+
+    <!-- Assign new monster -->
+    <h3>Assign a New Monster to this Encounter</h3>
+    <form action="{{ url_for('update_encounter', campaign_id=campaign_id, campaign_name=campaign_name, encounter_id=encounter[0]) }}" method="POST">
+        <label for="monster_id">Select a Monster:</label>
+        <select name="monster_id" id="monster_id">
+            <option value="" disabled selected>-- Select a Monster --</option>
+            {% for monster in all_monsters %}
+            <option value="{{ monster[0] }}">{{ monster[1] }} ({{ monster[2] }})</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="assign_monster" value="assign">Assign Monster</button>
+    </form>
+{% endblock %}

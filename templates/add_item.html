@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Add Item{% endblock %}
+
+{% block content %}
+    <h1>Add New Item</h1>
+    <form method="POST">
+        <label for="Item Name">Item Name:</label>
+        <input type="text" id="Item Name" name="Item Name" required>
+
+        <label for="Item Type">Item Type:</label>
+        <input type="text" id="Item Type" name="Item Type" required>
+
+        <label for="Damage Type">Damage Type:</label>
+        <select id="Damage Type" name="Damage Type">
+            <option value="" selected>None</option>
+            <option value="Acid">Acid</option>
+            <option value="Bludgeoning">Bludgeoning</option>
+            <option value="Cold">Cold</option>
+            <option value="Fire">Fire</option>
+            <option value="Force">Force</option>
+            <option value="Lightning">Lightning</option>
+            <option value="Necrosis">Necrosis</option>
+            <option value="Piercing">Piercing</option>
+            <option value="Poison">Poison</option>
+            <option value="Psychic">Psychic</option>
+            <option value="Radiant">Radiant</option>
+            <option value="Slashing">Slashing</option>
+            <option value="Thunder">Thunder</option>
+        </select>
+
+        <label for="Damage Die">Damage Die:</label>
+        <input type="text" id="Damage Die" name="Damage Die" placeholder="e.g., 1d8">
+
+        <label for="Item Cost">Item Cost:</label>
+        <input type="number" id="Item Cost" name="Item Cost" required>
+
+        <button type="submit">Add Item</button>
+    </form>
+{% endblock %}

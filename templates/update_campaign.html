@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Campaign - D&D Campaign Manager{% endblock %}
+
+{% block content %}
+    <h2>Update Campaign: {{ campaign.name }}</h2>
+    <form action="{{ url_for('update_campaign', campaign_id=campaign.campaignID) }}" method="POST">
+        <label for="Campaign Name">Campaign Name:</label>
+        <input type="text" name="Campaign Name" value="{{ campaign.name }}" required><br>
+        <label for="Meeting Day">Meeting Day:</label>
+        <input type="text" name="Meeting Day" value="{{ campaign.meeting_day }}" required><br>
+        <label for="Meeting Time">Meeting Time:</label>
+        <input type="time" name="Meeting Time" value="{{ campaign.meeting_time }}" required><br>
+        <input type="submit" value="Update Campaign">
+    </form>
+{% endblock %}

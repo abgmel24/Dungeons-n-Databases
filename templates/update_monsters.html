@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Update Monster{% endblock %}
+
+{% block content %}
+    <h1>Update Monster</h1>
+    <form method="POST">
+        <label for="monster_name">Monster Name:</label>
+        <input type="text" id="monster_name" name="Monster Name" value="{{ monster.monster_name }}" required>
+
+        <label for="monster_type">Monster Type:</label>
+        <input type="text" id="monster_type" name="Monster Type" value="{{ monster.monster_type }}" required>
+
+        <label for="monster_exp">EXP:</label>
+        <input type="number" id="monster_exp" name="EXP" value="{{ monster.monster_exp }}" required>
+
+        <label for="monster_rating">Rating:</label>
+        <input type="number" id="monster_rating" name="Rating" value="{{ monster.monster_rating }}" required>
+
+        <button type="submit">Update Monster</button>
+    </form>
+{% endblock %}

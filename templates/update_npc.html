@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Update NPC{% endblock %}
+
+{% block content %}
+    <h1>Edit NPC</h1>
+    <form method="POST">
+        <label for="NPC Name">Name:</label>
+        <input type="text" id="NPC Name" name="NPC Name" value="{{ npc[2] }}" required><br>
+
+        <label for="NPC Class">Class:</label>
+        <input type="text" id="NPC Class" name="NPC Class" value="{{ npc[3] }}" required><br>
+
+        <label for="Affiliation">Affiliation:</label>
+        <input type="text" id="Affiliation" name="Affiliation" value="{{ npc[4] }}" required><br>
+
+        <label for="Goal">Goal:</label>
+        <input type="text" id="Goal" name="Goal" value="{{ npc[5] }}" required><br>
+
+        <label for="Alignment">Alignment:</label>
+        <input type="text" id="Alignment" name="Alignment" value="{{ npc[6] }}"><br>
+
+        <label for="Party Affinity">Party Affinity:</label>
+        <input type="text" id="Affinity" name="Party Affinity" value="{{ npc[7] }}"><br>
+
+        <label for="Is Alive">Is Alive:</label>
+        <input type="checkbox" id="Is Alive" name="Is Alive" {% if npc[8] %}checked{% endif %}><br>
+
+        <button type="submit">Update NPC</button>
+    </form>
+{% endblock %}

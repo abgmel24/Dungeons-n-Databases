@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Add Monster{% endblock %}
+
+{% block content %}
+    <h1>Add New Monster</h1>
+    <form method="POST">
+        <label for="Monster Name">Monster Name:</label>
+        <input type="text" id="Monster Name" name="Monster Name" required>
+
+        <label for="Monster Type">Monster Type:</label>
+        <select id="Monster Type" name="Monster Type" required>
+            <option value="" disabled selected>Select a Type</option>
+            <option value="Aberration">Aberration</option>
+            <option value="Beast">Beast</option>
+            <option value="Celestial">Celestial</option>
+            <option value="Construct">Construct</option>
+            <option value="Dragon">Dragon</option>
+            <option value="Elemental">Elemental</option>
+            <option value="Fey">Fey</option>
+            <option value="Fiend">Fiend</option>
+            <option value="Giant">Giant</option>
+            <option value="Humanoid">Humanoid</option>
+            <option value="Monstrosity">Monstrosity</option>
+            <option value="Ooze">Ooze</option>
+            <option value="Plant">Plant</option>
+            <option value="Swarm of tiny beasts">Swarm of tiny beasts</option>
+            <option value="Undead">Undead</option>
+        </select>
+
+        <label for="EXP">EXP:</label>
+        <input type="number" id="EXP" name="EXP" required>
+
+        <label for="Rating">Rating:</label>
+        <input type="number" id="Rating" name="Rating" min="0" max="30" required>
+
+        <button type="submit">Add Monster</button>
+    </form>
+{% endblock %}

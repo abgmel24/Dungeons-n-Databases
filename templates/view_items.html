@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}View Items{% endblock %}
+
+{% block content %}
+    <h1>View Items</h1>
+    <form method="POST">
+        <label for="damage_type">Filter by Damage Type:</label>
+        <select name="damage_type" id="damage_type">
+            <option value="" {% if not selected_damage_type %}selected{% endif %}>All</option>
+            <option value="Acid" {% if selected_damage_type == 'Acid' %}selected{% endif %}>Acid</option>
+            <option value="Bludgeoning" {% if selected_damage_type == 'Bludgeoning' %}selected{% endif %}>Bludgeoning</option>
+            <option value="Cold" {% if selected_damage_type == 'Cold' %}selected{% endif %}>Cold</option>
+            <option value="Fire" {% if selected_damage_type == 'Fire' %}selected{% endif %}>Fire</option>
+            <option value="Force" {% if selected_damage_type == 'Force' %}selected{% endif %}>Force</option>
+            <option value="Lightning" {% if selected_damage_type == 'Lightning' %}selected{% endif %}>Lightning</option>
+            <option value="Necrosis" {% if selected_damage_type == 'Necrosis' %}selected{% endif %}>Necrosis</option>
+            <option value="Piercing" {% if selected_damage_type == 'Piercing' %}selected{% endif %}>Piercing</option>
+            <option value="Poison" {% if selected_damage_type == 'Poison' %}selected{% endif %}>Poison</option>
+            <option value="Psychic" {% if selected_damage_type == 'Psychic' %}selected{% endif %}>Psychic</option>
+            <option value="Radiant" {% if selected_damage_type == 'Radiant' %}selected{% endif %}>Radiant</option>
+            <option value="Slashing" {% if selected_damage_type == 'Slashing' %}selected{% endif %}>Slashing</option>
+            <option value="Thunder" {% if selected_damage_type == 'Thunder' %}selected{% endif %}>Thunder</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    <h2>All Items</h2>
+    <table class="tb">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Damage Type</th>
+                <th>Damage Die</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>{{ item[5] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

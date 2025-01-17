@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}View Players - D&D Campaign Manager{% endblock %}
+
+{% block content %}
+    <h2>Players in Campaign: {{ campaign_name }}</h2>
+
+    <a href="{{ url_for('add_player', campaign_id=campaign_id, campaign_name=campaign_name) }}">Add Player</a>
+
+    {% if players %}
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Subclass</th>
+                    <th>Background</th>
+                    <th>Level</th>
+                    <th>Exp Total</th>
+                    <th>Gold</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player[2] }}</td> <!--Player Name-->
+                        <td>{{ player[3] }}</td> <!--Player Class-->
+                        <td>{{ player[4] or 'N/A' }}</td> <!--Subclas-->
+                        <td>{{ player[5] or 'N/A' }}</td> <!--Background-->
+                        <td>{{ player[6] }}</td> <!--Level-->
+                        <td>{{ player[7] }}</td> <!--ExpTotal-->
+                        <td>{{ player[9] }}</td> <!--Gold-->
+                        <td>{{ 'Active' if player[8] else 'Inactive' }}</td> <!--Active/Inactive-->
+                        <td>
+                            <a href="{{ url_for('update_player', campaign_id=campaign_id, campaign_name=campaign_name, player_id=player[0]) }}">Manage</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No players found for this campaign.</p>
+    {% endif %}
+{% endblock %}

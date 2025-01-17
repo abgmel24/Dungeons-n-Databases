@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Player - D&D Campaign Manager{% endblock %}
+
+{% block content %}
+    <h2>Add Player to Campaign</h2>
+    <form action="{{ url_for('add_player', campaign_id=campaign_id, campaign_name=campaign_name) }}" method="POST">
+        <label for="Player Name">Character Name:</label>
+        <input type="text" name="Player Name" required><br>
+
+        <label for="Class">Class:</label>
+        <input type="text" name="Class" required><br>
+
+        <label for="Subclass">Subclass:</label>
+        <input type="text" name="Subclass" required><br>
+
+        <label for="Background">Background:</label>
+        <input type="text" name="Background" required><br>
+
+        <label for="Level">Level:</label>
+        <input type="number" name="Level" min="1" max="20" required><br>
+
+        <label for="Exp">Exp:</label>
+        <input type="number" name="Exp" required><br>
+
+        <label for="Gold">Gold:</label>
+        <input type="number" name="Gold" step="0.01" required><br>
+
+        <input type="submit" value="Add Player">
+    </form>
+{% endblock %}

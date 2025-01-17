@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}View NPCs{% endblock %}
+
+{% block content %}
+    <h1>{{ campaign_name }} - NPCs</h1>
+
+    <a href="{{ url_for('add_npc', campaign_id=campaign_id, campaign_name=campaign_name) }}" class="button">Add NPC</a>
+
+    {% if npcs %}
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Affiliation</th>
+                    <th>Goal</th>
+                    <th>Alignment</th>
+                    <th>Affinity</th>
+                    <th>Is Alive</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for npc in npcs %}
+                <tr>
+                    <td>{{ npc[2] }}</td> <!-- Name -->
+                    <td>{{ npc[3] }}</td> <!-- Class -->
+                    <td>{{ npc[4] }}</td> <!-- Affiliation -->
+                    <td>{{ npc[5] }}</td> <!-- Goal -->
+                    <td>{{ npc[6] }}</td> <!-- Alignment -->
+                    <td>{{ npc[7] }}</td> <!-- Affinity -->
+                    <td>{{ 'Yes' if npc[8] else 'No' }}</td> <!-- Is Alive -->
+                    <td>
+                        <a href="{{ url_for('update_npc', campaign_name=campaign_name, npc_id=npc[0]) }}" class="button">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>There are no NPCs added to this campaign.</p>
+    {% endif %}
+{% endblock %}
