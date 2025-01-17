@@ -1,23 +1,22 @@
 Name: Abhi Gudimella, Nate Moss
 Date: 12/14/2024
-Class: CPSC-408-2
+Class: Database Management (Chapman University)
 
 Source Files:
-- dmdatabase-dump.sql
-- finalproject.sql
 - app.py
 - db_operations.py
 - templates (folder with .html files)
 - static (folder with .css files)
 
-Additional Files:
-- FinalProject.sql (contains background info such as queries that were used in app.py)
 
 Instructions To Run:
--Import datadump to create database with data
--Import dependencies to run the project in Python 3.13 with mysql-connector-python:
+-Have MySQL set up on your system (More info here: https://medium.com/@hafizzeeshan619/a-beginners-guide-to-mysql-setting-up-your-first-database-and-user-d1a1df1ea187) 
+-Import dependencies to run the project in Python 3.13:
+mysql-conenctor-python (can be installed by doing "pip install mysql-connector-python" in terminal)
 flask (can be installed by doing "pip install flask" in terminal)
 bcrypt (can be installed by doing "pip install bcrypt" in terminal)
+-Before running this project, insert authentication keys in app.py and db-operations.py. More information can be found in the first two lines of app.py
+-In terminal, run the following command:
 >python app.py
 -Click on generated link in console, output should look like below:
 -"Database created or already exists.
